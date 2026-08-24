@@ -1,7 +1,7 @@
-import { StyleSheet, View } from 'react-native';
-import { Checkbox, Text, TouchableRipple, useTheme } from 'react-native-paper';
+import { StyleSheet, View } from "react-native";
+import { Checkbox, Text, TouchableRipple, useTheme } from "react-native-paper";
 
-import StyledTextInput from '@/components/form/styled-text-input';
+import StyledTextInput from "@/components/form/styled-text-input";
 
 interface CheckBoxAndTextProps {
   q: string;
@@ -14,7 +14,7 @@ export default function CheckBoxAndText({ q, selected, setSelected }: CheckBoxAn
   const checked = selected[q] !== undefined;
 
   const toggle = (): void => {
-    setSelected({ ...selected, [q]: checked ? undefined : '' });
+    setSelected({ ...selected, [q]: checked ? undefined : "" });
   };
 
   return (
@@ -27,19 +27,27 @@ export default function CheckBoxAndText({ q, selected, setSelected }: CheckBoxAn
             borderColor: theme.colors.outline,
             backgroundColor: checked ? theme.colors.surfaceVariant : undefined,
           },
-        ]}
-      >
+        ]}>
         <View style={styles.rowInner}>
-          <Checkbox status={checked ? 'checked' : 'unchecked'} onPress={toggle} />
+          <Checkbox
+            status={checked ? "checked" : "unchecked"}
+            onPress={toggle}
+          />
           <Text style={styles.label}>{q}</Text>
         </View>
       </TouchableRipple>
       {checked && (
         <StyledTextInput
-          value={selected[q] || ''}
+          value={selected[q] || ""}
           setter={(newVal) => setSelected({ ...selected, [q]: newVal })}
           placeholder="Write about it."
-          style={styles.textInput}
+          style={[
+            styles.textInput,
+            {
+              borderColor: theme.colors.outline,
+              borderRadius: 6,
+            },
+          ]}
         />
       )}
     </View>
@@ -49,21 +57,22 @@ export default function CheckBoxAndText({ q, selected, setSelected }: CheckBoxAn
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 4,
-    gap: 8,
   },
   row: {
     borderWidth: 1,
     borderRadius: 7,
   },
   rowInner: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingRight: 12,
   },
   label: {
     flex: 1,
   },
   textInput: {
-    minHeight: 80,
+    borderWidth: 1,
+    borderStyle: "solid",
+    minHeight: 60,
   },
 });

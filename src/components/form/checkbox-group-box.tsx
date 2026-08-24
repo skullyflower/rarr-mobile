@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Checkbox, Chip, Text, TouchableRipple, useTheme } from 'react-native-paper';
+import { useEffect } from "react";
+import { StyleSheet, View } from "react-native";
+import { Checkbox, Chip, Text, TouchableRipple, useTheme } from "react-native-paper";
 
 interface CheckboxGroupBoxProps {
   columns?: number;
@@ -15,7 +15,7 @@ export default function CheckboxGroupBox({ valuesList, options, setter }: Checkb
 
   const toggle = (value: string): void => {
     setter(
-      valuesList.includes(value) ? valuesList.filter((v) => v !== value) : [...valuesList, value]
+      valuesList.includes(value) ? valuesList.filter((v) => v !== value) : [...valuesList, value],
     );
   };
 
@@ -29,15 +29,19 @@ export default function CheckboxGroupBox({ valuesList, options, setter }: Checkb
           {valuesList
             .filter((value) => !Array.isArray(options) || options.includes(value))
             .map((value) => (
-              <Chip key={value} compact style={styles.badge}>
-                {value.replaceAll('_', ' ')}
+              <Chip
+                key={value}
+                compact
+                textStyle={{ fontSize: 12 }}
+                style={styles.badge}>
+                {value.replaceAll("_", " ")}
               </Chip>
             ))}
         </View>
       )}
       <View style={styles.grid}>
         {optionsList.map((part) => {
-          const value = typeof part === 'string' ? part : part[0];
+          const value = typeof part === "string" ? part : part[0];
           const checked = valuesList.includes(value);
           return (
             <TouchableRipple
@@ -49,16 +53,18 @@ export default function CheckboxGroupBox({ valuesList, options, setter }: Checkb
                   borderColor: theme.colors.outline,
                   backgroundColor: checked ? theme.colors.surfaceVariant : undefined,
                 },
-              ]}
-            >
+              ]}>
               <View style={styles.checkboxRowInner}>
-                <Checkbox status={checked ? 'checked' : 'unchecked'} onPress={() => toggle(value)} />
+                <Checkbox
+                  status={checked ? "checked" : "unchecked"}
+                  onPress={() => toggle(value)}
+                />
                 <View style={styles.checkboxLabel}>
-                  {typeof part === 'string' ? (
+                  {typeof part === "string" ? (
                     <Text>{part}</Text>
                   ) : (
                     <>
-                      <Text style={styles.bold}>({part[0].replaceAll('_', ' ')})</Text>
+                      <Text style={styles.bold}>({part[0].replaceAll("_", " ")})</Text>
                       <Text>{part[1]}</Text>
                     </>
                   )}
@@ -80,12 +86,13 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   badgeRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    flexWrap: "wrap",
     gap: 8,
   },
   badge: {
     marginRight: 0,
+    maxWidth: "100%",
   },
   grid: {
     gap: 8,
@@ -95,8 +102,8 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
   checkboxRowInner: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingRight: 12,
   },
   checkboxLabel: {
@@ -104,6 +111,6 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   bold: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });

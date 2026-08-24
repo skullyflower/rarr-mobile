@@ -1,17 +1,18 @@
-import { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import { useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { Button, Text } from "react-native-paper";
 
-import AccordionSection from '@/components/layout/accordion-section';
-import CollapsingText from '@/components/layout/collapsing-text';
-import PageCard from '@/components/layout/page-card';
-import Privacy from '@/components/privacy';
-import type { DoubleListItem } from '@/components/form/double-lister-input';
-import DoubleListerInput from '@/components/form/double-lister-input';
-import WhatYouWrote from '@/components/what-you-wrote/what-you-wrote';
-import { createWhatYouWroteSections } from '@/components/what-you-wrote/typedSectionFactories';
-import { serenityFieldsToTypedSections } from './serenityCheckInTypedSections';
-import strings from '@/data/serenity.json';
+import AccordionSection from "@/components/layout/accordion-section";
+import CollapsingText from "@/components/layout/collapsing-text";
+import PageCard from "@/components/layout/page-card";
+import Privacy from "@/components/privacy";
+import type { DoubleListItem } from "@/components/form/double-lister-input";
+import DoubleListerInput from "@/components/form/double-lister-input";
+import WhatYouWrote from "@/components/what-you-wrote/what-you-wrote";
+import { createWhatYouWroteSections } from "@/components/what-you-wrote/typedSectionFactories";
+import { serenityFieldsToTypedSections } from "./serenityCheckInTypedSections";
+import strings from "@/data/serenity.json";
+import BeFreeButton from "@/components/buttons/be-free-button";
 
 export default function SerenityCheckInScreen() {
   const [letGo, setLetGo] = useState(false);
@@ -54,19 +55,18 @@ export default function SerenityCheckInScreen() {
           </AccordionSection>
           <View style={styles.prayerBox}>
             {strings.prayer.map((line, i) => (
-              <Text key={`pray-${i}`} variant="bodyLarge">
+              <Text
+                key={`pray-${i}`}
+                variant="bodyLarge">
                 {line}
               </Text>
             ))}
           </View>
           <View style={styles.buttonRow}>
-            <Button
-              mode="contained"
+            <BeFreeButton
               disabled={canCannotControl.length === 0}
-              onPress={() => setLetGo(true)}
-            >
-              Be Free!
-            </Button>
+              setLetGo={() => setLetGo(true)}
+            />
           </View>
         </View>
       </PageCard>
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   buttonRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });

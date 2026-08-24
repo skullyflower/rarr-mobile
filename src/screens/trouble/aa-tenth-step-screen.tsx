@@ -1,23 +1,24 @@
-import { useState } from 'react';
-import { Linking, ScrollView, StyleSheet, View } from 'react-native';
-import { Button, Text, useTheme } from 'react-native-paper';
+import { useState } from "react";
+import { Linking, ScrollView, StyleSheet, View } from "react-native";
+import { Text, useTheme } from "react-native-paper";
 
-import AccordionSection from '@/components/layout/accordion-section';
-import CollapsingText from '@/components/layout/collapsing-text';
-import PageCard from '@/components/layout/page-card';
-import Privacy from '@/components/privacy';
-import CheckBoxAndText from '@/components/form/checkbox-and-text';
-import CheckboxGroupBox from '@/components/form/checkbox-group-box';
-import WhatYouWrote from '@/components/what-you-wrote/what-you-wrote';
-import { createWhatYouWroteSections } from '@/components/what-you-wrote/typedSectionFactories';
-import { tenthStepFieldsToTypedSections } from '@/components/what-you-wrote/tenthStepTypedSections';
-import strings from '@/data/aa-tenth.json';
+import AccordionSection from "@/components/layout/accordion-section";
+import CollapsingText from "@/components/layout/collapsing-text";
+import PageCard from "@/components/layout/page-card";
+import Privacy from "@/components/privacy";
+import CheckBoxAndText from "@/components/form/checkbox-and-text";
+import CheckboxGroupBox from "@/components/form/checkbox-group-box";
+import WhatYouWrote from "@/components/what-you-wrote/what-you-wrote";
+import { createWhatYouWroteSections } from "@/components/what-you-wrote/typedSectionFactories";
+import { tenthStepFieldsToTypedSections } from "@/components/what-you-wrote/tenthStepTypedSections";
+import strings from "@/data/aa-tenth.json";
+import BeFreeButton from "@/components/buttons/be-free-button";
 
 export default function AaTenthStepScreen() {
   const theme = useTheme();
   const [letGo, setLetGo] = useState(false);
   const [selectedQuestions, setSelectedQuestions] = useState<Record<string, string | undefined>>(
-    {}
+    {},
   );
   const [characterAssets, setCharacterAssets] = useState<string[]>([]);
   const [characterDefects, setCharacterDefects] = useState<string[]>([]);
@@ -39,11 +40,11 @@ export default function AaTenthStepScreen() {
       <WhatYouWrote
         reset={reset}
         sections={createWhatYouWroteSections(
-          tenthStepFieldsToTypedSections('aa-spot-check', {
+          tenthStepFieldsToTypedSections("aa-spot-check", {
             selectedQuestions,
             characterAssets,
             characterDefects,
-          })
+          }),
         )}
       />
     );
@@ -60,11 +61,10 @@ export default function AaTenthStepScreen() {
                 <Text key={index}>{line}</Text>
               ))}
               <Text>
-                For more information visit:{' '}
+                For more information visit:{" "}
                 <Text
-                  style={{ color: theme.colors.secondary, textDecorationLine: 'underline' }}
-                  onPress={() => Linking.openURL('https://www.aa.org')}
-                >
+                  style={{ color: theme.colors.secondary, textDecorationLine: "underline" }}
+                  onPress={() => Linking.openURL("https://www.aa.org")}>
                   aa.org
                 </Text>
               </Text>
@@ -106,9 +106,10 @@ export default function AaTenthStepScreen() {
             </AccordionSection>
           </View>
           <View style={styles.buttonRow}>
-            <Button mode="contained" disabled={incomplete} onPress={() => setLetGo(true)}>
-              Be Free!
-            </Button>
+            <BeFreeButton
+              disabled={incomplete}
+              setLetGo={() => setLetGo(true)}
+            />
           </View>
         </View>
       </PageCard>
@@ -126,11 +127,11 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   centerBold: {
-    textAlign: 'center',
-    fontWeight: 'bold',
+    textAlign: "center",
+    fontWeight: "bold",
   },
   buttonRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });

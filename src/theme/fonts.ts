@@ -20,12 +20,12 @@ const HEADING_VARIANTS = new Set<string>([
 ]);
 
 const BODY_SIZE_BUMP: Record<string, number> = {
-  bodyLarge: 18,
-  bodyMedium: 16,
-  bodySmall: 14,
-  labelLarge: 16,
-  labelMedium: 14,
-  labelSmall: 12,
+  bodyLarge: 20,
+  bodyMedium: 18,
+  bodySmall: 16,
+  labelLarge: 18,
+  labelMedium: 16,
+  labelSmall: 14,
 };
 
 // "spooky" mode matches rarr-app's defaultTheme: Creepster headings, Underdog body.

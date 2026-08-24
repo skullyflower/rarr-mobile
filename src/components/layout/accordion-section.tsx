@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { List, useTheme } from 'react-native-paper';
+import type { ReactNode } from "react";
+import { StyleSheet, View } from "react-native";
+import { List, useTheme } from "react-native-paper";
 
 interface AccordionSectionProps {
   title: string;
@@ -18,14 +18,12 @@ export default function AccordionSection({ title, children }: AccordionSectionPr
       style={[
         styles.header,
         { borderColor: theme.colors.outline, backgroundColor: theme.colors.surfaceVariant },
-      ]}
-    >
+      ]}>
       <View
         style={[
           styles.panel,
           { borderColor: theme.colors.outline, backgroundColor: theme.colors.surfaceVariant },
-        ]}
-      >
+        ]}>
         {children}
       </View>
     </List.Accordion>
@@ -36,7 +34,6 @@ const styles = StyleSheet.create({
   header: {
     borderWidth: 1,
     borderRadius: 6,
-    marginBottom: 4,
   },
   panel: {
     borderWidth: 1,

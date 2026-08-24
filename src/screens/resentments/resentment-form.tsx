@@ -1,30 +1,31 @@
-import { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { Button, Text, TextInput } from 'react-native-paper';
+import { useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { Button, Text, TextInput } from "react-native-paper";
 
-import AccordionSection from '@/components/layout/accordion-section';
-import CollapsingText from '@/components/layout/collapsing-text';
-import PageCard from '@/components/layout/page-card';
-import Privacy from '@/components/privacy';
-import CheckboxGroupBox from '@/components/form/checkbox-group-box';
-import NeverLetGo from '@/components/form/never-let-go';
-import StyledTextInput from '@/components/form/styled-text-input';
-import WhatYouWrote from '@/components/what-you-wrote/what-you-wrote';
-import { createWhatYouWroteSections } from '@/components/what-you-wrote/typedSectionFactories';
-import useProgramDropDown from '@/hooks/use-program-dropdown';
-import { resentmentFieldsToTypedSections } from './resentmentTypedSections';
-import { affects, myParts, successes, strings } from '@/data/resentments.json';
+import AccordionSection from "@/components/layout/accordion-section";
+import CollapsingText from "@/components/layout/collapsing-text";
+import PageCard from "@/components/layout/page-card";
+import Privacy from "@/components/privacy";
+import CheckboxGroupBox from "@/components/form/checkbox-group-box";
+import NeverLetGo from "@/components/form/never-let-go";
+import StyledTextInput from "@/components/form/styled-text-input";
+import WhatYouWrote from "@/components/what-you-wrote/what-you-wrote";
+import { createWhatYouWroteSections } from "@/components/what-you-wrote/typedSectionFactories";
+import useProgramDropDown from "@/hooks/use-program-dropdown";
+import { resentmentFieldsToTypedSections } from "./resentmentTypedSections";
+import { affects, myParts, successes, strings } from "@/data/resentments.json";
+import BeFreeButton from "@/components/buttons/be-free-button";
 
 type ProgKey = keyof typeof affects;
 const programOptions = Object.keys(affects);
 
 export default function ResentmentForm() {
-  const [Iresent, setIresent] = useState('');
-  const [because, setBecause] = useState('');
+  const [Iresent, setIresent] = useState("");
+  const [because, setBecause] = useState("");
   const [affectsMy, setAffectsMy] = useState<string[]>([]);
   const [myPart, setMyPart] = useState<string[]>([]);
   const [didWell, setDidWell] = useState<string[]>([]);
-  const [learned, setLearned] = useState('');
+  const [learned, setLearned] = useState("");
   const [letGo, setLetGo] = useState(false);
   const [neverVisible, setNeverVisible] = useState(false);
 
@@ -35,12 +36,12 @@ export default function ResentmentForm() {
 
   const reset = (): void => {
     setLetGo(false);
-    setIresent('');
-    setBecause('');
+    setIresent("");
+    setBecause("");
     setAffectsMy([]);
     setMyPart([]);
     setDidWell([]);
-    setLearned('');
+    setLearned("");
   };
 
   if (letGo) {
@@ -55,7 +56,7 @@ export default function ResentmentForm() {
             myPart,
             didWell,
             learned,
-          })
+          }),
         )}
       />
     );
@@ -72,8 +73,7 @@ export default function ResentmentForm() {
             <ProgramDropDown />
             <Text variant="headlineSmall">{program.title}</Text>
           </View>
-        }
-      >
+        }>
         <View style={styles.stack}>
           <CollapsingText>
             <View style={styles.stack}>
@@ -82,7 +82,9 @@ export default function ResentmentForm() {
               ))}
             </View>
           </CollapsingText>
-          <Text style={styles.centerBold} variant="titleMedium">
+          <Text
+            style={styles.centerBold}
+            variant="titleMedium">
             {`So, why don't you write about it?`}
           </Text>
 
@@ -96,7 +98,11 @@ export default function ResentmentForm() {
               />
             </AccordionSection>
             <AccordionSection title="And why?">
-              <StyledTextInput value={because} setter={setBecause} placeholder="Let it all out..." />
+              <StyledTextInput
+                value={because}
+                setter={setBecause}
+                placeholder="Let it all out..."
+              />
             </AccordionSection>
             <AccordionSection title="How does it affect you? What does it threaten?">
               <CheckboxGroupBox
@@ -120,23 +126,32 @@ export default function ResentmentForm() {
               />
             </AccordionSection>
             <AccordionSection title="Do you see the situation differently now?">
-              <StyledTextInput value={learned} setter={setLearned} />
+              <StyledTextInput
+                value={learned}
+                setter={setLearned}
+              />
             </AccordionSection>
           </View>
 
           <Text style={styles.centerText}>Are you ready to let it go?</Text>
           <View style={styles.buttonRow}>
-            <Button mode="contained" disabled={incomplete} onPress={() => setLetGo(true)}>
-              Be Free!
-            </Button>
-            <Button mode="outlined" onPress={() => setNeverVisible(true)}>
+            <BeFreeButton
+              disabled={incomplete}
+              setLetGo={() => setLetGo(true)}
+            />
+            <Button
+              mode="outlined"
+              onPress={() => setNeverVisible(true)}>
               NEVER!!
             </Button>
           </View>
         </View>
       </PageCard>
       <Privacy />
-      <NeverLetGo visible={neverVisible} onClose={() => setNeverVisible(false)} />
+      <NeverLetGo
+        visible={neverVisible}
+        onClose={() => setNeverVisible(false)}
+      />
     </ScrollView>
   );
 }
@@ -147,25 +162,25 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   headerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    flexWrap: "wrap",
     gap: 12,
   },
   stack: {
     gap: 12,
   },
   centerBold: {
-    textAlign: 'center',
-    fontWeight: 'bold',
+    textAlign: "center",
+    fontWeight: "bold",
   },
   centerText: {
-    textAlign: 'center',
+    textAlign: "center",
   },
   buttonRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
     gap: 12,
   },
 });

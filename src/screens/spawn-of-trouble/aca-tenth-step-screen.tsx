@@ -1,28 +1,29 @@
-import { useState } from 'react';
-import { Linking, ScrollView, StyleSheet, View } from 'react-native';
-import { Button, Text, useTheme } from 'react-native-paper';
+import { useState } from "react";
+import { Linking, ScrollView, StyleSheet, View } from "react-native";
+import { Button, Text, useTheme } from "react-native-paper";
 
-import AccordionSection from '@/components/layout/accordion-section';
-import CollapsingText from '@/components/layout/collapsing-text';
-import PageCard from '@/components/layout/page-card';
-import Privacy from '@/components/privacy';
-import WhatYouWrote from '@/components/what-you-wrote/what-you-wrote';
-import { createWhatYouWroteSections } from '@/components/what-you-wrote/typedSectionFactories';
-import AssetsSection from './assets-section';
-import ChoiceSection from './choice-section';
-import FeelingsStatement from './feelings-statement';
-import LaundryListSection from './laundry-list-section';
-import ToolsUsedToday from './tools-today';
-import TraitsSection from './traits-section';
-import { acaTenthFieldsToTypedSections } from './acaTenthTypedSections';
-import strings from '@/data/aca-tenth.json';
+import AccordionSection from "@/components/layout/accordion-section";
+import CollapsingText from "@/components/layout/collapsing-text";
+import PageCard from "@/components/layout/page-card";
+import Privacy from "@/components/privacy";
+import WhatYouWrote from "@/components/what-you-wrote/what-you-wrote";
+import { createWhatYouWroteSections } from "@/components/what-you-wrote/typedSectionFactories";
+import AssetsSection from "./assets-section";
+import ChoiceSection from "./choice-section";
+import FeelingsStatement from "./feelings-statement";
+import LaundryListSection from "./laundry-list-section";
+import ToolsUsedToday from "./tools-today";
+import TraitsSection from "./traits-section";
+import { acaTenthFieldsToTypedSections } from "./acaTenthTypedSections";
+import strings from "@/data/aca-tenth.json";
+import BeFreeButton from "@/components/buttons/be-free-button";
 
 export default function AcaTenthStepScreen() {
   const theme = useTheme();
   const [letGo, setLetGo] = useState(false);
   const [praise, setPraise] = useState<string[]>([]);
-  const [freedomText, setFreedomText] = useState('');
-  const [feelingsSentence, setFeelingSentence] = useState('');
+  const [freedomText, setFreedomText] = useState("");
+  const [feelingsSentence, setFeelingSentence] = useState("");
   const [listOfTools, setListOfTools] = useState<string[]>([]);
   const [traitQs] = useState<string[]>([]);
   const [llTraits, setLLTraits] = useState<string[]>([]);
@@ -40,8 +41,8 @@ export default function AcaTenthStepScreen() {
   const reset = (): void => {
     setLetGo(false);
     setPraise([]);
-    setFreedomText('');
-    setFeelingSentence('');
+    setFreedomText("");
+    setFeelingSentence("");
     setListOfTools([]);
     setSelectedTraits({});
     setLLTraits([]);
@@ -60,7 +61,7 @@ export default function AcaTenthStepScreen() {
             traitQs,
             selectedTraits,
             llTraits,
-          })
+          }),
         )}
       />
     );
@@ -77,11 +78,12 @@ export default function AcaTenthStepScreen() {
                 <Text key={index}>{line}</Text>
               ))}
               <Text>
-                For more information visit:{' '}
+                For more information visit:{" "}
                 <Text
-                  style={{ color: theme.colors.secondary, textDecorationLine: 'underline' }}
-                  onPress={() => Linking.openURL('https://adultchildren.org/comline/tips-for-step-10/')}
-                >
+                  style={{ color: theme.colors.secondary, textDecorationLine: "underline" }}
+                  onPress={() =>
+                    Linking.openURL("https://adultchildren.org/comline/tips-for-step-10/")
+                  }>
                   Adult Children.org
                 </Text>
               </Text>
@@ -89,28 +91,44 @@ export default function AcaTenthStepScreen() {
           </CollapsingText>
           <View style={styles.stack}>
             <AccordionSection title="Exercise 1: Questions">
-              <TraitsSection selectedTraits={selectedTraits} setSelectedTraits={setSelectedTraits} />
+              <TraitsSection
+                selectedTraits={selectedTraits}
+                setSelectedTraits={setSelectedTraits}
+              />
             </AccordionSection>
             <AccordionSection title="Exercise 2: The Laundry Lists Traits">
-              <LaundryListSection llTraits={llTraits} setLLTraits={setLLTraits} />
+              <LaundryListSection
+                llTraits={llTraits}
+                setLLTraits={setLLTraits}
+              />
             </AccordionSection>
             <AccordionSection title="Exercise 3: Choice Continuum">
-              <ChoiceSection freedomText={freedomText} setFreedomText={setFreedomText} />
+              <ChoiceSection
+                freedomText={freedomText}
+                setFreedomText={setFreedomText}
+              />
             </AccordionSection>
             <AccordionSection title="Exercise 4: Tools">
-              <ToolsUsedToday listOfTools={listOfTools} setListOfTools={setListOfTools} />
+              <ToolsUsedToday
+                listOfTools={listOfTools}
+                setListOfTools={setListOfTools}
+              />
             </AccordionSection>
             <AccordionSection title="Exercise 5: Feelings">
               <FeelingsStatement setFeelingSentence={setFeelingSentence} />
             </AccordionSection>
             <AccordionSection title="Exercise 6: Affirmation">
-              <AssetsSection praise={praise} setSetPraise={setPraise} />
+              <AssetsSection
+                praise={praise}
+                setSetPraise={setPraise}
+              />
             </AccordionSection>
           </View>
           <View style={styles.buttonRow}>
-            <Button mode="contained" disabled={incomplete} onPress={() => setLetGo(true)}>
-              Be Free!
-            </Button>
+            <BeFreeButton
+              disabled={incomplete}
+              setLetGo={() => setLetGo(true)}
+            />
           </View>
         </View>
       </PageCard>
@@ -128,11 +146,11 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   centerBold: {
-    textAlign: 'center',
-    fontWeight: 'bold',
+    textAlign: "center",
+    fontWeight: "bold",
   },
   buttonRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });
