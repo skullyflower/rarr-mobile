@@ -11,8 +11,8 @@ export default function BeFreeButton({ disabled, setLetGo }: BeFreeButtonProps) 
 
   return (
     <Button
-      textColor={theme.colors.onPrimaryContainer}
-      style={[{ backgroundColor: theme.colors.primaryContainer }]}
+      textColor={theme.colors.onSurfaceVariant}
+      style={[{ backgroundColor: theme.colors.surfaceVariant }]}
       mode="contained"
       disabled={disabled}
       onPress={setLetGo}>

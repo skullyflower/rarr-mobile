@@ -15,7 +15,7 @@ export function buildDarkTheme(useRegFonts: boolean): MD3Theme {
     colors: {
       ...MD3DarkTheme.colors,
       primary: purple[300], // Heading color (dark)
-      onPrimary: red[100], // Button "solid" variant text (dark)
+      onPrimary: red[900], // Button "solid" variant text (dark)
       secondary: pink[500], // Input/Textarea focus border accent
       onSecondary: pink[50],
       background: gray[900], // body bg (dark)
@@ -43,7 +43,7 @@ export function buildLightTheme(useRegFonts: boolean): MD3Theme {
     colors: {
       ...MD3LightTheme.colors,
       primary: purple[700], // Heading color (light)
-      onPrimary: red[900], // Button "solid" variant text (light)
+      onPrimary: red[100], // Button "solid" variant text (light)
       secondary: pink[500],
       onSecondary: pink[900],
       background: gray[400], // body bg (light)

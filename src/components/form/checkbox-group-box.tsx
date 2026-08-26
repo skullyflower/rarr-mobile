@@ -61,7 +61,7 @@ export default function CheckboxGroupBox({ valuesList, options, setter }: Checkb
                 />
                 <View style={styles.checkboxLabel}>
                   {typeof part === "string" ? (
-                    <Text>{part}</Text>
+                    <Text style={styles.checkboxLabel}>{part}</Text>
                   ) : (
                     <>
                       <Text style={styles.bold}>({part[0].replaceAll("_", " ")})</Text>
@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
   checkboxRow: {
     borderWidth: 1,
     borderRadius: 7,
+    padding: 4,
   },
   checkboxRowInner: {
     flexDirection: "row",
@@ -109,6 +110,7 @@ const styles = StyleSheet.create({
   checkboxLabel: {
     flex: 1,
     gap: 2,
+    fontSize: 18,
   },
   bold: {
     fontWeight: "bold",

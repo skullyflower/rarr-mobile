@@ -1,10 +1,18 @@
-import { TextInput, type TextInputProps } from 'react-native-paper';
+import { TextInput, type TextInputProps } from "react-native-paper";
 
-interface StyledTextInputProps extends Omit<TextInputProps, 'value' | 'onChangeText'> {
+interface StyledTextInputProps extends Omit<TextInputProps, "value" | "onChangeText"> {
   value: string;
   setter: (value: string) => void;
 }
 
 export default function StyledTextInput({ value, setter, ...rest }: StyledTextInputProps) {
-  return <TextInput multiline value={value} onChangeText={setter} {...rest} />;
+  return (
+    <TextInput
+      multiline
+      mode="outlined"
+      value={value}
+      onChangeText={setter}
+      {...rest}
+    />
+  );
 }

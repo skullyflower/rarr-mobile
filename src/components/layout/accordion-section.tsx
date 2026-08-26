@@ -14,15 +14,25 @@ export default function AccordionSection({ title, children }: AccordionSectionPr
     <List.Accordion
       title={title}
       titleNumberOfLines={4}
-      titleStyle={{ color: theme.colors.primary }}
+      titleStyle={{
+        color: theme.colors.primary,
+        fontFamily: theme.fonts.headlineSmall.fontFamily,
+        fontSize: theme.fonts.headlineSmall.fontSize,
+      }}
       style={[
         styles.header,
-        { borderColor: theme.colors.outline, backgroundColor: theme.colors.surfaceVariant },
+        {
+          borderColor: theme.colors.outline,
+          backgroundColor: theme.colors.surfaceVariant,
+        },
       ]}>
       <View
         style={[
           styles.panel,
-          { borderColor: theme.colors.outline, backgroundColor: theme.colors.surfaceVariant },
+          {
+            borderColor: theme.colors.outline,
+            backgroundColor: theme.colors.surfaceVariant,
+          },
         ]}>
         {children}
       </View>

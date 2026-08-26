@@ -1,6 +1,6 @@
-import { useCallback, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Button, IconButton, Text, TextInput, useTheme } from 'react-native-paper';
+import { useCallback, useState } from "react";
+import { StyleSheet, View } from "react-native";
+import { Button, IconButton, Text, TextInput, useTheme } from "react-native-paper";
 
 interface ListerInputProps {
   list: string[];
@@ -10,12 +10,12 @@ interface ListerInputProps {
 
 export default function ListerInput({ list, setList, placeholder }: ListerInputProps) {
   const theme = useTheme();
-  const [oneItem, setOneItem] = useState('');
+  const [oneItem, setOneItem] = useState("");
 
   const addItem = useCallback(() => {
     if (oneItem) {
       setList([oneItem, ...list]);
-      setOneItem('');
+      setOneItem("");
     }
   }, [oneItem, list, setList]);
 
@@ -24,18 +24,24 @@ export default function ListerInput({ list, setList, placeholder }: ListerInputP
       <View style={styles.inputRow}>
         <TextInput
           style={styles.input}
-          placeholder={placeholder || 'Add an item...'}
+          placeholder={placeholder || "Add an item..."}
+          placeholderTextColor={theme.colors.outline}
           value={oneItem}
+          mode="outlined"
           onChangeText={setOneItem}
           onSubmitEditing={addItem}
           returnKeyType="done"
         />
-        <Button mode="contained" onPress={addItem}>
+        <Button
+          mode="contained"
+          onPress={addItem}>
           Add
         </Button>
       </View>
       {list.map((value, index) => (
-        <View key={index} style={[styles.itemRow, { borderColor: theme.colors.outline }]}>
+        <View
+          key={index}
+          style={[styles.itemRow, { borderColor: theme.colors.outline }]}>
           <Text style={styles.itemText}>{value}</Text>
           <IconButton
             icon="delete"
@@ -53,17 +59,17 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   inputRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 8,
   },
   input: {
     flex: 1,
   },
   itemRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     padding: 6,
     paddingLeft: 12,
     borderWidth: 1,

@@ -41,6 +41,7 @@ export default function CheckBoxAndText({ q, selected, setSelected }: CheckBoxAn
           value={selected[q] || ""}
           setter={(newVal) => setSelected({ ...selected, [q]: newVal })}
           placeholder="Write about it."
+          placeholderTextColor={theme.colors.outline}
           style={[
             styles.textInput,
             {
@@ -61,6 +62,7 @@ const styles = StyleSheet.create({
   row: {
     borderWidth: 1,
     borderRadius: 7,
+    padding: 4,
   },
   rowInner: {
     flexDirection: "row",
@@ -69,6 +71,7 @@ const styles = StyleSheet.create({
   },
   label: {
     flex: 1,
+    fontSize: 18,
   },
   textInput: {
     borderWidth: 1,

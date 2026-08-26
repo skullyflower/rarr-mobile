@@ -16,7 +16,7 @@ export default function ColorBox({ children }: { children: ReactNode }) {
 
 const styles = StyleSheet.create({
   cbox: {
-    paddingHorizontal: 16,
+    padding: 16,
     borderRadius: 6,
   },
 });

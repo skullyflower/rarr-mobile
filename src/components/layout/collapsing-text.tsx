@@ -8,7 +8,18 @@ export default function CollapsingText({ children }: { children: ReactNode }) {
 
   return (
     <View>
-      {show && <View style={styles.content}>{children}</View>}
+      <View
+        style={[
+          show ? styles.contentOpen : styles.contentClosed,
+          {
+            marginBottom: 8,
+            transitionProperty: "*",
+            transitionDuration: ".3s",
+            transitionTimingFunction: "ease-in",
+          },
+        ]}>
+        {children}
+      </View>
       <View style={styles.toggleRow}>
         <Button
           compact
@@ -22,8 +33,12 @@ export default function CollapsingText({ children }: { children: ReactNode }) {
 }
 
 const styles = StyleSheet.create({
-  content: {
-    marginBottom: 8,
+  contentOpen: {
+    height: 150,
+  },
+  contentClosed: {
+    height: 0,
+    overflow: "scroll",
   },
   toggleRow: {
     alignItems: "flex-end",

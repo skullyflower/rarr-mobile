@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { Button, Menu, Text, TextInput } from 'react-native-paper';
+import { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { Button, Menu, Text, TextInput } from "react-native-paper";
 
-import strings from '@/data/aca-tenth.json';
+import strings from "@/data/aca-tenth.json";
 
 interface FeelingsStatementProps {
   setFeelingSentence: (value: string) => void;
 }
 
 export default function FeelingsStatement({ setFeelingSentence }: FeelingsStatementProps) {
-  const [when, setWhen] = useState('');
-  const [feeling, setFeeling] = useState('');
-  const [because, setBecause] = useState('');
+  const [when, setWhen] = useState("");
+  const [feeling, setFeeling] = useState("");
+  const [because, setBecause] = useState("");
   const [menuVisible, setMenuVisible] = useState(false);
   const feelings = [...strings.feelings].sort();
 
@@ -30,11 +30,12 @@ export default function FeelingsStatement({ setFeelingSentence }: FeelingsStatem
           visible={menuVisible}
           onDismiss={() => setMenuVisible(false)}
           anchor={
-            <Button mode="outlined" onPress={() => setMenuVisible(true)}>
-              {feeling || 'Select a feeling'}
+            <Button
+              mode="outlined"
+              onPress={() => setMenuVisible(true)}>
+              {feeling || "Select a feeling"}
             </Button>
-          }
-        >
+          }>
           <ScrollView style={styles.menuScroll}>
             {feelings.map((value, index) => (
               <Menu.Item
@@ -49,9 +50,19 @@ export default function FeelingsStatement({ setFeelingSentence }: FeelingsStatem
           </ScrollView>
         </Menu>
         <Text>when</Text>
-        <TextInput style={styles.input} value={when} onChangeText={setWhen} />
+        <TextInput
+          style={styles.input}
+          value={when}
+          mode="outlined"
+          onChangeText={setWhen}
+        />
         <Text>because</Text>
-        <TextInput style={styles.input} value={because} onChangeText={setBecause} />
+        <TextInput
+          style={styles.input}
+          value={because}
+          mode="outlined"
+          onChangeText={setBecause}
+        />
       </View>
     </View>
   );
@@ -62,9 +73,9 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   row: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
     gap: 8,
   },
   input: {

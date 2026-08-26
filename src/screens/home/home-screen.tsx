@@ -23,14 +23,14 @@ export default function HomeScreen() {
           </View>
           <Divider />
           <Text
-            variant="headlineSmall"
+            variant="headlineMedium"
             style={[styles.title, { color: theme.colors.primary }]}>
             {strings.title}
           </Text>
 
           <Image
             source={require("../../../assets/images/logo/RARR_Splash.png")}
-            style={styles.splash}
+            style={[styles.splash, { maxHeight: screen.width }]}
             resizeMode="contain"
           />
 
@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
   },
   splash: {
     width: "100%",
-    height: 220,
   },
   quoteBox: {
     backgroundColor: purple[300],

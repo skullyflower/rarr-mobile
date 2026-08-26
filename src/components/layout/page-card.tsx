@@ -18,7 +18,7 @@ export default function PageCard({ children, header }: PageCardProps) {
       {showHeader &&
         (typeof header === "string" ? (
           <Text
-            variant="headlineSmall"
+            variant="headlineMedium"
             style={[styles.headerText, { color: theme.colors.primary }]}>
             {header}
           </Text>

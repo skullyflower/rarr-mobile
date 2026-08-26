@@ -69,9 +69,9 @@ export default function ResentmentForm() {
       <PageCard
         header={
           <View style={styles.headerRow}>
-            <Text variant="headlineSmall">Trouble:</Text>
+            <Text variant="headlineMedium">Trouble:</Text>
             <ProgramDropDown />
-            <Text variant="headlineSmall">{program.title}</Text>
+            <Text variant="headlineMedium">{program.title}</Text>
           </View>
         }>
         <View style={styles.stack}>
@@ -91,6 +91,7 @@ export default function ResentmentForm() {
           <View style={styles.stack}>
             <AccordionSection title="Who or what is bothering you?">
               <TextInput
+                mode="outlined"
                 value={Iresent}
                 placeholder="Person, institution, concept, or situation"
                 onChangeText={setIresent}
